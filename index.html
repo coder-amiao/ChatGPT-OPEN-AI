@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="images/x-icon" href="./static/images/favicon.ico">
+    <link rel="stylesheet" href="./static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./static/css/github-dark-dimmed.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <title>ChatGPT-OPEN AI</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="box col-xs-12">
+        <div class="title">
+            <h2 class="text-center"><span style="margin-right: 10px;"></span>关注公众号程序员三时了解最新平台动态</h2>
+        </div>
+        <p>
+          <h3>
+            <a href="http://openai.soboys.cn/login" target="_blank">应用接入</a>
+          </h3>
+          <span id="chatStatus" style="color: red;">
+            会话状态 
+            <span></span>
+          </span>
+        </p>
+        <div class="answer">
+          <!-- <div class="tips">
+            <h4 class="text-center">关注公众号程序员三时了解最新平台动态</h4>
+          </div> -->
+          <div id="chatWindow"></div>
+          <div class="function">
+            <div class="others">
+              <div class="left">
+                <div class="settings common dropup">
+                  <a class="dropdown-toggle icon-style" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="设置">
+                    <i class="fa fa-cogs fa-lg" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu" style="padding:0;" onclick="event.stopPropagation()">
+                   
+                
+                    <div class="settings-common">
+                      <span><i class="fa fa-reddit-alien fa-lg" aria-hidden="true"></i>&nbsp; OpenAI 模型</span>
+                      <select id="selModel" class="form-control ipt-common">
+                        <option value="1">gpt-3.5-turbo</option>
+                        <option value="4">gpt-4</option>
+                        <option value="2">AI绘画</option>
+                      </select>
+                    </div>
+                    <div class="settings-common">
+                      <span><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>&nbsp; 记录对话内容，刷新不会消失</span>
+                      <div class="chck-btn">
+                        <input id="chck-1" type="checkbox">
+                        <label for="chck-1" class="check-trail">
+                        <div class="check-handler"></div>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="settings-common">
+                      <span><i class="fa fa-retweet fa-lg" aria-hidden="true"></i>&nbsp; 开启连续对话，加倍消耗tokens</span>
+                      <div class="chck-btn">
+                        <input id="chck-2" type="checkbox">
+                        <label for="chck-2" class="check-trail">
+                        <div class="check-handler"></div>
+                        </label>
+                      </div>
+                    </div>
+        
+                  </div>
+                </div>
+              </div>
+              <div class="right">
+                <div class="screenshot common">
+                  <a class="icon-style" title="截图保存对话"><i class="fa fa-file-image-o fa-lg" aria-hidden="true"></i></a>
+                </div>
+                <div class="delete common">
+                  <a class="icon-style" title="删除历史记录"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="ipt">
+              <div class="col-xs-12">
+                <textarea id="chatInput" class="form-control" rows="1"></textarea>
+              </div>
+              <button id="chatBtn" class="btn btn-primary" type="button">Go !</button>
+            </div>
+          </div>
+        </div>
+        <footer class="foot" style="margin-top: 20px;">
+          <p class="lead text-center">“抢走工作的不会是AI,而是率先掌握AI能力的人”</p>
+          <p class="lead text-center">
+            <a href="http://openai.soboys.cn/login" target="_blank"><i class="fa fa-link fa-lg" aria-hidden="true"></i>&nbsp; 由OPEN AI快速开发平台强力驱动</a>
+            <a href="https://github.com/coder-amiao/ChatGPT-OPEN-AI" target="_blank"><i class="fa fa-github fa-lg" aria-hidden="true"></i>&nbsp; 项目地址</a>
+          </p>
+        </footer>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./static/js/jquery-2.1.1.js"></script>
+<script src="./static/js/bootstrap.min.js"></script>
+<script src="./static/js/highlight.min.js"></script>
+<script src="./static/js/marked.min.js"></script>
+<script src="./static/js/html2canvas.min.js"></script>
+<script src="./static/js/custom.js"></script>
+<script src="./static/js/web-storage-cache.min.js"></script>
+<script src="./static/js/utils.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+</html>
