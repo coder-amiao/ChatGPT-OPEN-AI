@@ -9,7 +9,7 @@
 [小白畅玩免费支持ChatGPT3和4,一键定制自己专属AI](https://mp.weixin.qq.com/s?__biz=Mzg4OTkwNjc2MQ==&mid=2247484042&idx=1&sn=ff38eae124958e77b460d665f88807ea&chksm=cfe5f1acf89278ba169cf27297977ebdd17aba69f7fcec23548c6a3ba41bb34ba06bcead3e71&token=1231696373&lang=zh_CN#rd)
 
 
-示例项目由于静态项目 文件包含 开发者账号和秘钥。所以做了 custom js做了加密混淆   需要解密 js 源码的 可以 关注 公众号程序员三时  回复解密 获取js
+ 关注 公众号程序员三时  获取订阅通知
 ![](https://images.soboys.cn/202305131900705.png)
 
 
