@@ -13,10 +13,12 @@
 ![](https://images.soboys.cn/202305131900705.png)
 
 
+[在线演示](http://openchat.soboys.cn/)
 
-在线演示
+[OPEN AI 开发者后台](http://openai.soboys.cn/index)
 
-OPEN AI 开发文档
+[OPEN AI接口文档](https://apifox.com/apidoc/shared-d877c066-8cb9-44a3-bbc6-f38174766ae9)
+
 
 # 版本更新1.5.0
 1. API聊天重构统一数据结构支持模型一键切换上下文保存
@@ -61,8 +63,6 @@ gpt3和gpt4 对比
 你基于我们OPEN AI 平台可以轻松实现AI应用，对话，画图，对话各种场景。
 
 <img src="https://images.soboys.cn/202305200140005.png"/>
-
-[OPEN AI开发者入口](http://openai.dtgarden.com/login)
 
 1. 基于OPEN AI快速对接所有APP应用
 2. 提供急速免费稳定接口响应
