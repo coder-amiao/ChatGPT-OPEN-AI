@@ -68,7 +68,7 @@ ALL OPEN AI 一切基于AI,  插件互联
 ##### OPEN AI 开发者入口
 
 [开发者后台](http://openai.soboys.cn/login "开发者后台")
-![](https://images.soboys.cn/202305281356884.png)
+![](https://images.soboys.cn/202305281746825.png)
 
 [接入案例在线演示](http://openchat.soboys.cn/ "接入案例在线演示")
 ![](https://images.soboys.cn/202305281406901.png)
