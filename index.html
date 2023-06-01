@@ -20,7 +20,7 @@
         </div>
         <p>
           <h3>
-            <a href="http://openai.soboys.cn/login" target="_blank">应用接入</a>
+            <a style="cursor: pointer;" onmouseover="this.style.cursor='pointer'" id="bindAccount">应用接入</a>
           </h3>
           <span id="chatStatus" style="color: red;">
             会话状态 
@@ -47,7 +47,8 @@
                       <select id="selModel" class="form-control ipt-common">
                         <option value="1">gpt-3.5-turbo</option>
                         <option value="4">gpt-4</option>
-                        <option value="2">AI绘画</option>
+                        <option value="3">AI绘画By-GPT</option>
+                        <option value="2">AI绘画By-Midjourney</option>
                       </select>
                     </div>
                     <div class="settings-common">
@@ -111,5 +112,6 @@
 <script src="./static/js/custom.js"></script>
 <script src="./static/js/web-storage-cache.min.js"></script>
 <script src="./static/js/utils.js"></script>
+<script src="./static/js/layer/layer.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
 </html>

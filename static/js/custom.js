@@ -34,11 +34,12 @@ $(document).ready(function() {
     var token=wsCache.get('token');
 
     var params={};
-    var wsApi='ws://127.0.0.1:8080';  //ws://api-openai.dtgarden.com
-    var api='http://127.0.0.1:8080'
+    var wsApi='ws://api-openai.dtgarden.com';  //ws://api-openai.dtgarden.com  //127.0.0.1:8080
+    var api='http://api-openai.dtgarden.com'
     var roloeCode='gpt';   
-    var appId='20230515055137A001';
-    var secret='K2cc6d82451e87c1771a3ffd7317107';
+    var appId=localStorage.getItem('appId');   
+    var secret=localStorage.getItem('secret');  
+    defaultAccount()
 
   //判断当前浏览器是否支持WebSocket
   if ('WebSocket' in window) {
@@ -79,6 +80,7 @@ $(document).ready(function() {
         if (event.data === 'ping') {
           ws.send('pong');
         } else if (event.data === 'pong') {
+          console.log("💓")
           clearTimeout(timerId);
           timerId = setTimeout(function() {
             ws.send('ping');
@@ -137,6 +139,7 @@ $(document).ready(function() {
       if (event.data === 'ping') {
         ws.send('pong');
       } else if (event.data === 'pong') {
+        console.log("💓")
         clearTimeout(timerId);
         timerId = setTimeout(function() {
           ws.send('ping');
@@ -181,7 +184,7 @@ $(document).ready(function() {
           token=data.data.token
           wsCache.set('token', data.data.token, {exp : data.data.expiration}); 
        }else{
-         alert('OPEN AI 接口授权失败请登录 http://openai.soboys.cn/login')
+         alert(data.message +"OPEN AI 账号无效授权失败请登录 http://openai.soboys.cn/login")
          return ;
        }
       },
@@ -292,7 +295,7 @@ $(document).ready(function() {
     let interface='/pic/GenImage';
     let param={
         desc:message,
-        model:1
+        model
     }
    let  headers= {
       "appId": appId,
@@ -308,8 +311,14 @@ $(document).ready(function() {
       data: JSON.stringify(param),
       headers,
       success: function(data) {
+        let pic="";
         if(data.success){
-           let pic=data.data.image
+          if(model==2){
+             pic=data.data.image.midjourneyImgEntry.image_url
+          }else{
+             pic=data.data.image.gptImgEntry.data[0].url
+          }
+          
            let html='<p><img class="ai-pic"  src="'+pic+'"></p>'
            addResponsPic(html);
            chatInput.val('');
@@ -324,7 +333,13 @@ $(document).ready(function() {
               localStorage.setItem("session",JSON.stringify(messages));
             }
        }else{
-         alert('出错了，稍后重试吧')
+          chatInput.val('');
+          // 收到回复，让按钮可点击
+          chatBtn.attr('disabled',false)
+          // 重新绑定键盘事件
+          chatInput.on("keydown",handleEnter); 
+          addResponseMessage(data.message+"点击应用接入绑定OPEN AI账号 每天获取免费体验额度")
+         
          return ;
        }
       },
@@ -385,7 +400,7 @@ function analysisMsg(message){
         chatBtn.attr('disabled',false)
         // 重新绑定键盘事件
         chatInput.on("keydown",handleEnter); 
-        addResponseMessage(json_data.content);
+        addResponseMessage(json_data.content+"点击应用接入绑定OPEN AI账号 每天获取免费体验额度");
       }
   }
   
@@ -412,7 +427,7 @@ function analysisMsg(message){
       messages.push({"role": "user", "content": message})
       // 收到回复前让按钮不可点击
       chatBtn.attr('disabled',true)
-      if(model=='2'){
+      if(model=='2'||model=='3'){
         paint(message)
       }else{
         send(message);
@@ -483,7 +498,7 @@ function analysisMsg(message){
   
 //模型选择按钮  
 function defaultSelModel(value){
-  if(value!=1&&value!=2&value!=4){
+  if(value!=1&&value!=2&value!=4&value!=3){
     value=1;
     model=1;
     localStorage.setItem('model',model);
@@ -605,5 +620,40 @@ function showDelfualtContinuousDialogue(){
       reloadWebsocket(params)
   
     })
+
+    //应用接入
+    $("#bindAccount").click(function(){
+       // 弹出自定义弹窗
+        layer.open({
+          area: ['400px', '400px'],
+          title: '绑定OPEN AI开发者账号',
+          content: '<div><label>应用ID：</label><input style="width:100%" type="text" id="appId"><br><label>秘钥ID：</label><input style="width:100%" type="password" id="appSecret"></div>',
+          btn: ['确认', '取消'],
+          yes: function(index, elem){
+            // 点击确认后的回调函数
+             appId = $('#appId').val().trim(); // 获取应用ID，去掉首尾空格
+             secret = $('#appSecret').val().trim(); // 获取秘钥，去掉首尾空格
+              wsCache.delete('token');
+              localStorage.clear();
+
+              localStorage.setItem('appId',appId);
+              localStorage.setItem('secret',secret)
+              window.location.reload();
+            // 在这里可以对输入内容进行验证和处理
+            
+            // 关闭弹窗
+            layer.close(index);
+          }
+        });
+
+    })
+    // 初始化默认平台账号
+    function defaultAccount(){
+      if(appId==null||appId==''||appId=='undefind'){
+        appId='xxxx';
+        secret='xxxxxx';
+      }
+    }
+  
    
   });
