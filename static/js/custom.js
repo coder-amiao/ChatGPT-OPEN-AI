@@ -26,6 +26,7 @@ $(document).ready(function() {
     showDelfualtContinuousDialogue();
 
     //是否存储回话记录
+    var messages= saveHistoryMsg();
     var archiveSession= localStorage.getItem('archiveSession');
     showDelfualtArchiveSession();
     loadHistoryMsg();
@@ -35,7 +36,7 @@ $(document).ready(function() {
 
     var params={};
     var wsApi='ws://api-openai.dtgarden.com';  //ws://api-openai.dtgarden.com  //127.0.0.1:8080
-    var api='http://api-openai.dtgarden.com'
+    var api='http://api-openai.dtgarden.com';
     var roloeCode='gpt';   
     var appId=localStorage.getItem('appId');   
     var secret=localStorage.getItem('secret');  
@@ -206,11 +207,6 @@ $(document).ready(function() {
   
     
   
-    // 存储对话信息,实现连续对话
-    var messages = [];
-  
-    // 检查返回的信息是否是正确信息
-    var resFlag = true
   
     // marked.js设置语法高亮
     marked.setOptions({
@@ -239,6 +235,24 @@ $(document).ready(function() {
       chatWindow.append(responseMessageElement);
       chatWindow.scrollTop(chatWindow.prop('scrollHeight'));
     }
+
+  
+    //添加添加请求消息和等待到消息窗口适合画图
+    function addRequestLoadMessage(message) {
+      
+      chatInput.val('');
+      let escapedMessage = escapeHtml(message);  // 对请求message进行转义，防止输入的是html而被浏览器渲染https://images.soboys.cn/202305252344275.png
+      let requestMessageElement = $('<div class="row message-bubble"><img class="chat-icon" src="https://images.soboys.cn/202305252344275.png"><div class="message-text request">' +  escapedMessage + '</div></div>');
+      chatWindow.append(requestMessageElement);
+
+      //画图加入额外的提示等待信息
+      addResponseMessage("AI画图可能存在较慢情况请耐心等待2-3分钟切勿刷新重复点击")
+
+      let responseMessageElement = $('<div class="row message-bubble"><img class="chat-icon" src="https://images.soboys.cn/202305252341819.png"><div class="message-text response"><span class="loading-icon"><i class="fa fa-spinner fa-pulse fa-2x"></i></span></div></div>');
+      chatWindow.append(responseMessageElement);
+      chatWindow.scrollTop(chatWindow.prop('scrollHeight'));
+    }
+
     
     // 添加响应消息到窗口,流式响应此方法会执行多次
     function addResponseMessage(message) {
@@ -264,6 +278,7 @@ $(document).ready(function() {
       lastResponseElement.append(escapedMessage);
       chatWindow.scrollTop(chatWindow.prop('scrollHeight'));
     }
+
   
     //添加响应图片
     function addResponsPic(message){
@@ -329,7 +344,7 @@ $(document).ready(function() {
   
             messages.push({"role": "assistant", "content": html,"model":2});
             // 判断是否本地存储历史会话
-            if(localStorage.getItem('archiveSession')=="true"){
+            if(archiveSession==1){
               localStorage.setItem("session",JSON.stringify(messages));
             }
        }else{
@@ -428,6 +443,7 @@ function analysisMsg(message){
       // 收到回复前让按钮不可点击
       chatBtn.attr('disabled',true)
       if(model=='2'||model=='3'){
+        alert("AI绘画可能会存在较慢情况请耐心2-3分钟不要重复点击和刷新")
         paint(message)
       }else{
         send(message);
@@ -475,10 +491,7 @@ function analysisMsg(message){
     
     // 加载历史保存会话
     function loadHistoryMsg(){
-      if(archiveSession==1){
-        const messagesList = JSON.parse(localStorage.getItem("session"));
-        if(messagesList){
-          messages = messagesList;
+      if(archiveSession==1&&messages!=null&&messages!=''){
           $.each(messages, function(index, item) {
             if (item.role === 'user') {
               addRequestMessage(item.content)
@@ -490,7 +503,7 @@ function analysisMsg(message){
               }
             }
           });
-        }
+        
       }
      
     }
@@ -650,10 +663,20 @@ function showDelfualtContinuousDialogue(){
     // 初始化默认平台账号
     function defaultAccount(){
       if(appId==null||appId==''||appId=='undefind'){
-        appId='xxxx';
-        secret='xxxxxx';
+        appId='xxx';
+        secret='xxx';
       }
     }
   
+    //保存用户消息
+    function saveHistoryMsg(){
+      let messages=[];
+      const messagesList = JSON.parse(localStorage.getItem("session"));
+      if(messagesList){
+        messages=messagesList
+      }
+
+      return messages;
+    }
    
   });
