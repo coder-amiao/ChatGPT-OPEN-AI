@@ -19,6 +19,8 @@ $(document).ready(function() {
 
     //模型 1 gpt3, 4 gpt4 2 画图
     var model=localStorage.getItem('model');
+    //接口套餐标识
+    var identification="";
     defaultSelModel(model);
 
     //连续对话
@@ -93,6 +95,7 @@ $(document).ready(function() {
       
       //连接关闭的回调方法
       ws.onclose = function () {
+        alert("点击应用接入绑定自己OPEN AI账号在线体验。或者通过开放API集成到自己的APP")
         console.log('WebSocket 连接已关闭');
         $("#chatStatus span").text("离线")
       };
@@ -507,8 +510,7 @@ function analysisMsg(message){
       }
      
     }
-
-  
+    
 //模型选择按钮  
 function defaultSelModel(value){
   if(value!=1&&value!=2&value!=4&value!=3){
@@ -663,8 +665,8 @@ function showDelfualtContinuousDialogue(){
     // 初始化默认平台账号
     function defaultAccount(){
       if(appId==null||appId==''||appId=='undefind'){
-        appId='xxx';
-        secret='xxx';
+        appId='20230609051455A001';
+        secret='K20c4e7741418be6cbd773416240492';
       }
     }
   
