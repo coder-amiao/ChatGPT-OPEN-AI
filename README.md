@@ -1,4 +1,16 @@
 
+- [OPEN AI 平台背景想法](#open-ai-%E5%B9%B3%E5%8F%B0%E8%83%8C%E6%99%AF%E6%83%B3%E6%B3%95)
+- [OPEN AI平台初衷](#open-ai%E5%B9%B3%E5%8F%B0%E5%88%9D%E8%A1%B7)
+- [OPEN AI平台能做什么](#open-ai%E5%B9%B3%E5%8F%B0%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88)
+- [OPEN AI 目标](#open-ai-%E7%9B%AE%E6%A0%87)
+- [OPEN AI 开发者入口](#open-ai-%E5%BC%80%E5%8F%91%E8%80%85%E5%85%A5%E5%8F%A3)
+- [OPEN AI 发展历程来龙去脉](#open-ai-%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B%E6%9D%A5%E9%BE%99%E5%8E%BB%E8%84%89)
+- [OPEN AI 平台订阅与更新](#open-ai-%E5%B9%B3%E5%8F%B0%E8%AE%A2%E9%98%85%E4%B8%8E%E6%9B%B4%E6%96%B0)
+- [OPEN AI ChatGPT账号](#open-ai-chatgpt%E8%B4%A6%E5%8F%B7)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 
 ##### OPEN AI 平台背景想法
 
